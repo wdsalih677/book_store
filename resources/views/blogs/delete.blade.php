@@ -8,32 +8,32 @@
             
                 @csrf
                 <div class="modal-body">
-                    <form action="{{ route('blogeBackEnd.update' , $blog->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('blogeBackEnd.destroy' , $blog->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('PATCH')
+                        @method('DELETE')
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="text-danger" for="">عنوان المدونه :</label>
-                                <input class="form-control"  type="text" name="title" value="{{ $blog->title }}">
+                                <input class="form-control"  type="text" name="title" value="{{ $blog->title }}" disabled>
                                 <br>
                                 <label class="text-danger" for="">الصورة :</label>
-                                <input class="form-control" type="file" name="image" accept="image/*">
+                                <input class="form-control" type="file" name="image" accept="image/*" disabled>
                             </div>
                             <div class="col-md-4">
                                 <label class="text-danger" for="">نشر بواسطة :</label>
-                                <select name="post_by" class="form-control" id="">
+                                <select name="post_by" class="form-control" id="" disabled>
                                     @foreach ( $users as $user )
                                         <option value="{{ $user->id }}" {{ $user->id == $blog->post_by ? 'select' : '' }}>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-4 text-center">
-                                <img src="{{ asset('storage/'. $blog->title .'/'.$blog->image) }}" height="159px">
+                                <img src="{{ asset('storage/'. $blog->title .'/'.$blog->image) }}" height="159px" >
                             </div>
                             <div class="col-md-8">
                                 <br>
                                 <label class="text-danger" for="">نص المدونه :</label>
-                                <textarea name="blog_text" class="form-control" rows="5">{{ $blog->blog_text }}</textarea>
+                                <textarea name="blog_text" class="form-control" rows="5" disabled>{{ $blog->blog_text }}</textarea>
                             </div>
                         </div>
                 </div>

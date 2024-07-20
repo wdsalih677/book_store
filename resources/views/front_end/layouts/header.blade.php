@@ -26,6 +26,7 @@
                             <li><a class="dropdown" href="{{ route('front_end/about') }}">عن المكتبة</a></li>
                             <li><a class="dropdown" href="{{ route('front_end/blogs') }}">المدونه</a></li>
                             <li><a class="dropdown" href="{{ route('front_end/shop') }}">المتجر</a></li>
+                            <li><a class="dropdown" href="{{ route('front_end/latest_books') }}">أحدث الكتب و العروض</a></li>
                             <li><a class="dropdown" href="{{ route('loginPage') }}">تسجيل الدخول</a></li>
                             <li><a class="dropdown" href="contact.html">تسجيل جديد</a></li>
                             <li><a href=""><span class="badge badge-pill bg-danger border border-light rounded-circle"> {{ count(session('cart', [])) }}</span><span class="material-symbols-outlined mt-1">shopping_cart</span></a></li>

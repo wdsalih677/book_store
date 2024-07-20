@@ -30,13 +30,13 @@ class StockController extends Controller
     {
         try{
             $this->validate($request , [
-                'warehouses_id' => 'required',
+                'warehouses_id' => 'required|unique:ware_stocks,warehouses_id',
                 'quantity' => 'required|numeric|min:1',
                 'category_id' => 'required',
                 'book_id' => 'required'
             ],[
                 'warehouses_id.requierd' => 'يجب تحديد المستودع',
-    
+                'warehouses_id.unique' => 'المستودع مضاف مسبقا',
                 'quantity.required' => 'يجب تحديد الكميه التي ستكون داخل المستودع',
                 'quantity.numeric' => 'يجب ان تكون الكميه ارقام',
                 'quantity.min' => 'يجب ان يكون أقل كميه 1 فقط',

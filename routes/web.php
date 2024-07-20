@@ -6,10 +6,13 @@ use App\Http\Controllers\books\BookController;
 use App\Http\Controllers\categories\CategoryController;
 use App\Http\Controllers\front_end\frontEndController;
 use App\Http\Controllers\Latest_books\Latest_booksController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\warehouses\WareController;
 use App\Http\Controllers\warehouses_stock\StockController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,32 +38,42 @@ Auth::routes();
 Route::get('/loginFront_end', [LoginController::class , 'index'])->name('loginPage');
 
 //home route
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 
-//category controller
-Route::resource('/categories' , CategoryController::class);
+Route::middleware('auth')->group(function(){
+    //category controller
+    Route::resource('/categories' , CategoryController::class);
 
-//books controller
-Route::resource('/books', BookController::class);
-Route::get('getBooks/{id}', [BookController::class , 'getBooks'])->name('getBooks');
+    //books controller
+    Route::resource('/books', BookController::class);
+    Route::get('getBooks/{id}', [BookController::class , 'getBooks'])->name('getBooks');
 
-//warehouses controller
-Route::resource('/warehouses', WareController::class);
+    //warehouses controller
+    Route::resource('/warehouses', WareController::class);
 
-//ware_stock controller
-Route::resource('/ware_stock' , StockController::class);
+    //ware_stock controller
+    Route::resource('/ware_stock' , StockController::class);
 
-//blogeBackEnd
-Route::resource('/blogeBackEnd' , BlogsController::class);
+    //blogeBackEnd
+    Route::resource('/blogeBackEnd' , BlogsController::class);
 
-//Latest_books
-Route::resource('/Latest_books', Latest_booksController::class);
+    //Latest_books
+    Route::resource('/Latest_books', Latest_booksController::class);
+
+    //users
+    Route::resource('/users' , UserController::class);
+
+    //roles
+    Route::resource('/roles' , RoleController::class);
+});
+
 
 //***************************************************************************************************** */
 // ************************************Front End Route************************************************* */
 // **************************************************************************************************** */
 
 Route::name('front_end/')->group(function () {
+
     Route::get('about' , [frontEndController::class , 'about'])->name('about');
 
     Route::get('blogs' , [frontEndController::class , 'blogs'])->name('blogs');
@@ -78,4 +91,8 @@ Route::name('front_end/')->group(function () {
     Route::get('add_to_cart/{id}' , [ frontEndController::class , 'add_to_cart'])->name('add_to_cart');
 
     Route::get('check_out/{id}' , [frontEndController::class , 'check_out'])->name('check_out');
+
+    Route::get('latest_books', [frontEndController::class , 'getLatestBooks'])->name('latest_books');
 });
+
+// require __DIR__.'/auth.php';

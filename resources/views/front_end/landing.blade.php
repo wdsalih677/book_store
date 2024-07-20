@@ -163,18 +163,15 @@
             <div class="team-block col-lg-3 col-md-6 col-sm-12 col-xs-12">
                 <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                     <div class="image">
-                        <img src="{{ URL::asset('assets/front_end/images/resource/team-1.jpg') }}" alt="" />
+                        <img src="{{ URL::asset('assets/front_end/images/resource/dalito.jpg') }}" alt="" />
                         <div class="overlay-box">
                             <ul class="social-icons">
-                                <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                <li><a href="#"><span class="fab fa-google"></span></a></li>
-                                <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                                <li><a href="https://www.facebook.com/dalito.salah"><span class="fab fa-facebook-f"></span></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="lower-content">
-                        <h3><a href="#">Ahmed Mohamed</a></h3>
+                        <h3><a href="#">داليا صلاح ميرغني</a></h3>
                     </div>
                 </div>
             </div>
@@ -198,10 +195,10 @@
             <div class="testimonial-block-two">
                 <div class="inner-box">
                     <div class="image">
-                        <img src="{{ URL::asset('assets/front_end/images/resource/author-4.jpg') }}" alt="" />
+                        <img src="{{ URL::asset('assets/front_end/images/resource/altaybsalih1.jpg') }}" alt="" />
                     </div>
-                    <div class="text">Medical Centre is a great place to get all of your medical needs. I came in for a check up and did not wait more than 5 minutes before I was seen. I can only imagine the type of service you get for more serious issues. Thanks!</div>
-                    <div class="lower-box">
+                    <div class="text">“نُعلِّمُ الناس لنفتح أذهانهم ولنطلق طاقاتهم المحبوسة، ولكننا لا نستطيع أن نتنبأ بالنتيجة، ونحرر العقول من الخرافات، ونعطي الشعب مفاتيح المستقبل ليتصرف فيه كما يشاء”</div>
+                    <br><div class="lower-box">
                         <div class="clearfix">
 
                             <div class="pull-left">
@@ -209,8 +206,8 @@
                             </div>
                             <div class="pull-right">
                                 <div class="author-info">
-                                    <h3>Max Winchester</h3>
-                                    <div class="author">Kidny Patient</div>
+                                    <h3>الطيب صالح</h3>
+                                    <div class="author">موسم الهجرة للشمال</div>
                                 </div>
                             </div>
 
@@ -223,9 +220,9 @@
             <div class="testimonial-block-two">
                 <div class="inner-box">
                     <div class="image">
-                        <img src="{{ URL::asset('assets/front_end/images/resource/author-5.jpg') }}" alt="" />
+                        <img src="{{ URL::asset('assets/front_end/images/resource/altaybsalih2.jpg') }}" alt="" />
                     </div>
-                    <div class="text">Medical Centre is a great place to get all of your medical needs. I came in for a check up and did not wait more than 5 minutes before I was seen. I can only imagine the type of service you get for more serious issues. Thanks!</div>
+                    <div class="text">“إنني أريد أن آخذ حقي من الحياة عنوة.أريد أن أعطي بسخاء، أريد أن يفيض الحب من قلبي فينبع ويثمر.ثمة آفاق كثيرة لابد أن تزار، ثمة ثمار يجب أن تقطف، كتب كثيرة تقرأ، وصفحات بيضاء في سجل العمر، سأكتب فيها جملاً واضحة بخط جريء.”</div>
                     <div class="lower-box">
                         <div class="clearfix">
 
@@ -234,8 +231,8 @@
                             </div>
                             <div class="pull-right">
                                 <div class="author-info">
-                                    <h3>Jack Monita</h3>
-                                    <div class="author">Kidny Patient</div>
+                                    <h3>الطيب صالح</h3>
+                                    <div class="author">موسم الهجرة للشمال</div>
                                 </div>
                             </div>
 
@@ -243,57 +240,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Tesimonial Block Two -->
-            <div class="testimonial-block-two">
-                <div class="inner-box">
-                    <div class="image">
-                        <img src="{{ URL::asset('assets/front_end/images/resource/author-4.jpg') }}" alt="" />
-                    </div>
-                    <div class="text">Medical Centre is a great place to get all of your medical needs. I came in for a check up and did not wait more than 5 minutes before I was seen. I can only imagine the type of service you get for more serious issues. Thanks!</div>
-                    <div class="lower-box">
-                        <div class="clearfix">
-
-                            <div class="pull-left">
-                                <div class="quote-icon flaticon-quote"></div>
-                            </div>
-                            <div class="pull-right">
-                                <div class="author-info">
-                                    <h3>Max Winchester</h3>
-                                    <div class="author">Kidny Patient</div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tesimonial Block Two -->
-            <div class="testimonial-block-two">
-                <div class="inner-box">
-                    <div class="image">
-                        <img src="{{ URL::asset('assets/front_end/images/resource/author-5.jpg') }}" alt="" />
-                    </div>
-                    <div class="text">Medical Centre is a great place to get all of your medical needs. I came in for a check up and did not wait more than 5 minutes before I was seen. I can only imagine the type of service you get for more serious issues. Thanks!</div>
-                    <div class="lower-box">
-                        <div class="clearfix">
-
-                            <div class="pull-left">
-                                <div class="quote-icon flaticon-quote"></div>
-                            </div>
-                            <div class="pull-right">
-                                <div class="author-info">
-                                    <h3>Jack Monita</h3>
-                                    <div class="author">Kidny Patient</div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>

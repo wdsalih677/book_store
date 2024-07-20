@@ -120,8 +120,12 @@ class BlogsController extends Controller
 
     public function destroy(string $id)
     {
-        $blog = Blog::findOrFail($id)->delete();
-        toast('تم حذف المدونه بنجاح','success');
+        try{
+            Blog::findOrFail($id)->delete();
+            toast('تم حذف المدونه بنجاح','success');
             return redirect()->route('blogeBackEnd.index');
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }
