@@ -9,9 +9,16 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    function __construct()
+    {
+
+    $this->middleware('permission:صلاحيات المستخدمين', ['only' => ['index']]);
+    $this->middleware('permission:إضافة صلاحيه', ['only' => ['create','store']]);
+    $this->middleware('permission:تعديل صلاحيه', ['only' => ['edit','update']]);
+    $this->middleware('permission:حذف صلاحيه', ['only' => ['destroy']]);
+
+    }
+
     public function index()
     {
         $roles = Role::get();
@@ -82,7 +89,7 @@ class RoleController extends Controller
         // return $request;
         try{
             $request->validate([
-                'name' => 'required|unique:roles,name'.$id,
+                'name' => 'required|unique:roles,name,'.$id,
             ],[
                 'name.required' => "يجب إضافة صلاحيه",
                 'name.unique' => "هذه الصلاحه مضافه مسبقا",

@@ -10,7 +10,15 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogsController extends Controller
 {
+    function __construct()
+    {
 
+        $this->middleware('permission:قائمة المدونات', ['only' => ['index']]);
+        $this->middleware('permission:إضافة مدونه', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل مدونه', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف مدونه', ['only' => ['destroy']]);
+
+    }
     public function index()
     {
         $users = User::get();//get users when role == admin
@@ -117,7 +125,6 @@ class BlogsController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
-
     public function destroy(string $id)
     {
         try{

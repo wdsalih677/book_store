@@ -39,7 +39,9 @@
 							</div>
 							<div class="card-body">
 								<div class="col-sm-6 col-md-3">
-									<button class="btn btn-primary" data-target="#add_user" data-toggle="modal">إضافه مستخدم</button>
+									@can('إضافة مستخدم')
+										<button class="btn btn-primary" data-target="#add_user" data-toggle="modal">إضافه مستخدم</button>
+									@endcan
 								</div>
 								<br><br>
 								<div class="table-responsive">
@@ -76,8 +78,12 @@
 													<div class="dropdown">
 														<button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary" data-toggle="dropdown" id="dropdownMenuButton" type="button">العمليات <i class="fas fa-caret-down ml-1"></i></button>
 														<div  class="dropdown-menu tx-13">
-															<a href="{{ route('users.edit', $user->id) }}" class="dropdown-item" > <i class="fa fa-edit text-primary float-left"></i> تعديل </a>
-															<button class="dropdown-item" data-target="#delete_user{{ $user->id }}" data-toggle="modal"> <i class="fa fa-trash text-danger float-left"></i>  حدف </button>
+															@can('تعديل مستخدم')
+																<a href="{{ route('users.edit', $user->id) }}" class="dropdown-item" > <i class="fa fa-edit text-primary float-left"></i> تعديل </a>
+															@endcan
+															@can('حذف مستخدم')
+																<button class="dropdown-item" data-target="#delete_user{{ $user->id }}" data-toggle="modal"> <i class="fa fa-trash text-danger float-left"></i>  حدف </button>
+															@endcan
 														</div>
 													</div>
 												</td>

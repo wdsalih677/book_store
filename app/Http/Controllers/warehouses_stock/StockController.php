@@ -11,7 +11,15 @@ use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
+    function __construct()
+    {
 
+        $this->middleware('permission:مخزون المستودعات', ['only' => ['index']]);
+        $this->middleware('permission:إضافة مخزون', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل مخزون', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف مخزون', ['only' => ['destroy']]);
+
+    }
     public function index()
     {
         $warehouses = Warehouse::get();

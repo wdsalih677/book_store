@@ -10,7 +10,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
+    function __construct()
+    {
 
+        $this->middleware('permission:قائمة الكتب', ['only' => ['index']]);
+        $this->middleware('permission:إضافة قسم', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل قسم', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف قسم', ['only' => ['destroy']]);
+
+    }
     public function index()
     {
         $categories = Category::select('id','name','description')->get();

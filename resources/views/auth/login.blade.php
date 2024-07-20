@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
-                                    <div class="mb-5 d-flex"> <a href="{{ url('/' . $page='Home') }}"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Book<span>St</span>ore</h1></div>
+                                    <div class="mb-5 d-flex"> <a href="{{ url('/' . $page='Home') }}"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">برادايس <span>استو</span>ر</h1></div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
                                             <h2>مرحبا بك</h2>

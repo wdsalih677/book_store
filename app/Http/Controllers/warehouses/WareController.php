@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class WareController extends Controller
 {
+    function __construct()
+    {
+
+        $this->middleware('permission:قائمة المستودعات', ['only' => ['index']]);
+        $this->middleware('permission:إضافة مستودع', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل مستودع', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف مستودع', ['only' => ['destroy']]);
+
+    }
     public function index()
     {
         $warehouses = Warehouse::get();

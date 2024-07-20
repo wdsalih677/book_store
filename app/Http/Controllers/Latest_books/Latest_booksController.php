@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 
 class Latest_booksController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    function __construct()
+    {
+
+        $this->middleware('permission:قائمة أحدث الكتب', ['only' => ['index']]);
+        $this->middleware('permission:إضافة أحدث كتاب', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل أحدث كتاب', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف أحدث كتاب', ['only' => ['destroy']]);
+
+    }
     public function index()
     {
         $categries = Category::get();

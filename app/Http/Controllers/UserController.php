@@ -10,9 +10,15 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    function __construct()
+    {
+
+    $this->middleware('permission:قائمة المستخدمين', ['only' => ['index']]);
+    $this->middleware('permission:إضافة مستخدم', ['only' => ['create','store']]);
+    $this->middleware('permission:تعديل مستخدم', ['only' => ['edit','update']]);
+    $this->middleware('permission:حذف مستخدم', ['only' => ['destroy']]);
+
+    }
     public function index()
     {
         $users = User::get();

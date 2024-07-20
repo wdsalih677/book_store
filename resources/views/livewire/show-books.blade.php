@@ -31,8 +31,12 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-success" data-target="#edit_book{{ $book->id }}" data-toggle="modal">تعديل </button>
-                        <button class="btn btn-danger float-left" data-target="#delete_book{{ $book->id }}" data-toggle="modal">حذف</button>
+                        @can('تعديل كتاب')
+                            <button class="btn btn-success" data-target="#edit_book{{ $book->id }}" data-toggle="modal">تعديل </button>
+                        @endcan
+                        @can('حذف كتاب')
+                            <button class="btn btn-danger float-left" data-target="#delete_book{{ $book->id }}" data-toggle="modal">حذف</button>
+                        @endcan
                     </div>
                 </div>
             </div>

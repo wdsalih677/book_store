@@ -39,7 +39,9 @@
 							</div>
 							<div class="card-body">
 								<div class="col-sm-6 col-md-3">
-									<button class="btn btn-primary" data-target="#add_book" data-toggle="modal">إضافه</button>
+									@can('إضافة كتاب')
+										<button class="btn btn-primary" data-target="#add_book" data-toggle="modal">إضافه</button>
+									@endcan
 								</div>
 								<br>
 								@livewire('show-books')

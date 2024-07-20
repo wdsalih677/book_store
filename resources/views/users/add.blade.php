@@ -21,7 +21,6 @@
                             <div class="col">
                                 <label class="text-primary">الحاله :</label>
                                 <select name="status" class="form-control">
-                                    <option>إختيار...</option>
                                     <option value="1">نشط</option>
                                     <option value="0">غير نشط</option>
                                 </select>
@@ -33,7 +32,6 @@
                         <br>
                         <label class="text-primary">الصلاحيه :</label>
                         <select name="role_name" class="form-control">
-                            <option>إختيار...</option>
                             @foreach ($roles as $role)
                                 <option value="{{ $role->name }}">{{ $role->name }}</option>
                             @endforeach

@@ -10,7 +10,15 @@ use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
+    function __construct()
+    {
 
+        $this->middleware('permission:قائمة الأقسام', ['only' => ['index']]);
+        $this->middleware('permission:إضافة كتاب', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل كتاب', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف كتاب', ['only' => ['destroy']]);
+
+    }
     public function index()
     {
         $cate = Category::get();
