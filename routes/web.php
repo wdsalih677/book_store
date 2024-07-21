@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\blogs\BlogsController;
 use App\Http\Controllers\books\BookController;
 use App\Http\Controllers\categories\CategoryController;
 use App\Http\Controllers\front_end\frontEndController;
 use App\Http\Controllers\Latest_books\Latest_booksController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\warehouses\WareController;
@@ -37,6 +39,9 @@ Auth::routes();
 //login route
 Route::get('/loginFront_end', [LoginController::class , 'index'])->name('loginPage');
 
+//Register
+Route::get('/registerFront_end' , [RegisterController::class , 'index'])->name('registerFront_end');
+
 //home route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 
@@ -65,6 +70,12 @@ Route::middleware('auth')->group(function(){
 
     //roles
     Route::resource('/roles' , RoleController::class);
+
+    //profile
+    Route::get('/user_profile/{id}',[UserController::class ,'user_profile'])->name('user_profile');
+
+    //update_user_profile
+    Route::post('/update_user/{id}',[UserController::class , 'update_user'])->name('update_user');
 });
 
 

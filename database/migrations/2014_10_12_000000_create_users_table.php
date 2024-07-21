@@ -17,8 +17,16 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->text('role_name');
+            $table->text('role_name')->default('user');
             $table->tinyInteger('status')->default(1);//one == Active
+            $table->string('photo')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('address')->nullable();
+            $table->bigInteger('phone_number')->nullable();
+            $table->string('facebook_link')->nullable();
+            $table->string('twitter_link')->nullable();
+            $table->string('linkedin_link')->nullable();
+            $table->string('web_link')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

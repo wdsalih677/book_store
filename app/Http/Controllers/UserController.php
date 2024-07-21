@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -43,7 +44,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required',
+                'password' => 'required|same:password_confirmation',
                 'role_name' => 'required'
             ],[
                 'name.required' => 'يجب إضافة إسم المستخدم',
@@ -51,6 +52,7 @@ class UserController extends Controller
                 'email.email' => 'يجب ان يكون البريد الإلكتروني إيميل',
                 'email.unique' => 'البريد الإلكتروني مضاف مسبقا',
                 'password.required' => 'يجب كتابة كلمة السر',
+                'password.same' => 'يجب كتابة كلمة السر',
                 'role_name.required' => 'يجب تحديد الصلاحيه',
             ]);
             
@@ -124,6 +126,84 @@ class UserController extends Controller
             User::findOrFail($request->id)->delete();
             toast('تم حذف المستخدم بنجاح','success');
             return redirect()->route('users.index');
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+    public function user_profile()
+    {
+        return view('profiles.index');
+    }
+    public function update_user( Request $request,$id)
+    {
+        try{
+            $request->validate([
+                'name' => 'string|max:255',
+                'email' => 'string|email|max:255|unique:users,email,'.$id,
+                'password' => 'nullable|string|min:8',
+                'phone_number' => 'nullable|numeric',
+                'address' => 'nullable|string|max:255',
+                'bio' => 'nullable|string|max:1000',
+                'facebook_link' => 'nullable|url|max:150',
+                'twitter_link' => 'nullable|url|max:150',
+                'linkedin_link' => 'nullable|url|max:150',
+                'web_link' => 'nullable|url|max:150',
+            ],[
+                'name.string' => 'يجب أن يكون الأسم حرفي',
+                'name.max' => 'يجب أن لا يتجاوز عدد حروف الإسم 255 حرف',
+                'email.string' => 'يجب أن يكون البريد الإلكتروني حرفي',
+                'email.email' => 'يجب أن يكون بريد الإلكتروني',
+                'email.max' => 'يجب أن لا يتجاوز عدد حروف البريد الإلكتروني 255 حرف',
+                'email.unique' => 'البريد الإلكتروني مضاف مسبقا',
+                'password.min' => 'يجب أن لا يقل عدد حروف كلمة السر عن 8 احرف',
+                'phone_number.numeric' => 'يجب إدخال أرقام فقط',
+                'address.max' => 'يجب أن لا يتجاوز عدد حروف العنوان 255 حرف',
+                'bio.max' => 'يجب أن لا تتجاوز عدد حروف السيره الزاتيه 1000 حرف',
+                'facebook_link.url' => 'يجب إضافة رابط فقط',
+                'twitter_link.url' => 'يجب إضافة رابط فقط',
+                'linkedin_link.url' => 'يجب إضافة رابط فقط',
+                'web_link.url' => 'يجب إضافة رابط فقط',
+
+                'facebook_link.max' => 'يجب أن لا يزيد حجم الرابط اكثر من 150 حرف',
+                'twitter_link.max' => 'يجب أن لا يزيد حجم الرابط اكثر من 150 حرف',
+                'linkedin_link.max' => 'يجب أن لا يزيد حجم الرابط اكثر من 150 حرف',
+                'web_link.max' => 'يجب أن لا يزيد حجم الرابط اكثر من 150 حرف',
+                
+            ]);
+
+            $user = User::findOrFail($id);
+            $user->name = $request->name;
+            $old_name = $user->name;
+            $user->email = $request->email;
+            $user->password  = $request->password ? Hash::make($request->password) : $user->password;
+            $user->address = $request->address;
+            $user->phone_number = $request->phone_number;
+            $user->bio = $request->bio;
+            $user->facebook_link = $request->facebook_link;
+            $user->twitter_link  = $request->twitter_link;
+            $user->linkedin_link = $request->linkedin_link;
+            $user->web_link = $request->web_link;
+            if ($request->hasFile('photo')) {
+                $photo = $request->file('photo');
+                $name = $photo->getClientOriginalName();
+                $photo->storeAs($request->name, $name, 'public');
+                $user->photo = $name;
+            }
+
+
+            if ($request->hasFile('photo')) {
+                $photo = $request->file('photo');
+                $name = $photo->getClientOriginalName();
+                $photo->storeAs($request->name, $name, 'public');
+                $user->photo = $name;
+            }elseif($old_name !== $request->name){
+                    Storage::move("public/{$old_name}", "public/{$request->name}");
+            }
+
+
+            $user->save();
+            toast( 'تم تعديل ملفك الشخصي بنجاح' , 'success' );
+            return redirect()->route('user_profile', ['id' => $id]);
         }catch(\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

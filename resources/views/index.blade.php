@@ -9,7 +9,13 @@
 الرئيسيه
 @stop
 @section('page-header')
-<br><br>
+<br>
+@if (empty( auth()->user()->address && auth()->user()->phone_number ))
+<div class="alert alert-danger" role="alert">
+    يجب تعديل ملفك الشخصي
+</div>
+@endif
+<br>
 @endsection
 @section('content')
 
