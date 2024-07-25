@@ -41,10 +41,9 @@
 										</div>
 									</div>
 									<a class="dropdown-item" href="{{ route('user_profile', auth()->user()->id ) }}"><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-									<a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
-									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
-									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
-									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
+									@if (auth()->user()->role_name === ["admin"])
+										<a class="dropdown-item" href="{{ route('front_end/home') }}"><i class="bx bx-cog"></i>إنتقال للموقع</a>
+									@endif
 									<a class="dropdown-item"  href="{{ route('logout') }}"
 									onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="bx bx-log-out"></i>تسجيل خروج</a>
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

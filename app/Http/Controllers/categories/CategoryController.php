@@ -21,7 +21,8 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $categories = Category::select('id','name','description')->get();
+        $categories = Category::get();
+        // $categories = Category::paginate(10);
         return view('categories.category', compact('categories'));
     }
 

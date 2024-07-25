@@ -6,7 +6,7 @@
 
             <!--Info-->
             <div class="logo-outer">
-                <div class="logo"><a href="index.html"><img src="{{ URL::asset('assets/front_end/images/paradise/paradise_white-removebg-preview.png') }}" alt="" title=""></a></div>
+                <div class="logo"><a href="{{ route('front_end/home') }}"><img src="{{ URL::asset('assets/front_end/images/paradise/paradise_white-removebg-preview.png') }}" alt="" title=""></a></div>
             </div>
 
             <!--Nav Box-->
@@ -27,9 +27,20 @@
                             <li><a class="dropdown" href="{{ route('front_end/blogs') }}">المدونه</a></li>
                             <li><a class="dropdown" href="{{ route('front_end/shop') }}">المتجر</a></li>
                             <li><a class="dropdown" href="{{ route('front_end/latest_books') }}">أحدث الكتب و العروض</a></li>
-                            <li><a class="dropdown" href="{{ route('loginPage') }}">تسجيل الدخول</a></li>
-                            <li><a class="dropdown" href="{{ route('registerFront_end') }}">تسجيل جديد</a></li>
-                            <li><a href=""><span class="badge badge-pill bg-danger border border-light rounded-circle"> {{ count(session('cart', [])) }}</span><span class="material-symbols-outlined mt-1">shopping_cart</span></a></li>
+                            @if (!auth()->user())   
+                                <li><a class="dropdown" href="{{ route('loginPage') }}">تسجيل الدخول</a></li>
+                                <li><a class="dropdown" href="{{ route('registerFront_end') }}">تسجيل جديد</a></li>
+                            @else
+                                <li>
+                                    <a class="dropdown-item"  href="{{ route('logout') }}"
+									onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="bx bx-log-out"></i>تسجيل خروج</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+										@csrf
+									</form>
+                                </li>
+                            @endif
+                            
+                            <li><a href="{{ route('show_cart') }}"><span class="badge badge-pill bg-danger border border-light rounded-circle">{{ Gloudemans\Shoppingcart\Facades\Cart::content()->count() }}</span><span class="material-symbols-outlined mt-1">shopping_cart</span></a></li>
                         </ul>
                     </div>
                 </nav>

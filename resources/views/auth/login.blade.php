@@ -62,6 +62,8 @@
                                                     {{ __('تسجيل الدخول') }}
                                                 </button>
                                             </form>
+                                            <br>
+                                             هل تريد إنشاء حساب؟  <a href="{{ route('registerFront_end') }}">  إنشاء حساب جديد</a>
                                         </div>
                                     </div>
                                 </div>

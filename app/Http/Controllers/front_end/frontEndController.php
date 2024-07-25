@@ -7,6 +7,7 @@ use App\Models\blogs\Blog;
 use App\Models\books\Book;
 use App\Models\categories\Category;
 use App\Models\Latest_book\Latest_book;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class frontEndController extends Controller
@@ -31,6 +32,12 @@ class frontEndController extends Controller
     public function shop()
     {
         return view('front_end.shop');
+    }
+    //function to show cart content
+    public function show_cart()
+    {
+        $cart = Cart::content();
+        return view('front_end.cart' , compact('cart'));
     }
     //function to show book details
     public function shop_detail($id)
@@ -57,26 +64,14 @@ class frontEndController extends Controller
                 ->get();
         return response()->json($books);
     }
-    public function add_to_cart($id)
+    public function add_to_cart(Request $request ,$id)
     {
-
+        // return $request;
         $book = Book::findOrFail($id);
-        $cart = session()->get('cart' ,[]);
-        if (!is_array($cart)) {
-            $cart = [];
-        }
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity'] = isset($cart[$id]['quantity']) ? $cart[$id]['quantity'] + 1 : 1;
-        } else {
-            $cart[$id] = [
-                'id' => $book->id,
-                'title' => $book->title,
-                'price' => $book->price,
-                'quantity' => 1,
-            ];
-        }
         
-        session()->put('cart' ,  $cart );
+        Cart::add($book->id , $book->title , $request->qty , $book->price);
+        $total = Cart::total();
+        dd($total);
         toast('تم إضافة الكتاب للعربه','success');
         return redirect()->back();
 

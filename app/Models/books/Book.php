@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    use HasFactory;
     protected $table = "books";
     protected $guarded = [];
-    use HasFactory;
 
     public function categories(){
         return $this->belongsTo(Category::class , 'category_id');

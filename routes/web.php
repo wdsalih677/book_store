@@ -76,6 +76,9 @@ Route::middleware('auth')->group(function(){
 
     //update_user_profile
     Route::post('/update_user/{id}',[UserController::class , 'update_user'])->name('update_user');
+
+    //route to manage cart
+    Route::get('/show_cart' , [frontEndController::class , 'show_cart'])->name('show_cart');
 });
 
 
@@ -99,7 +102,7 @@ Route::name('front_end/')->group(function () {
 
     Route::get('live_search/{id}' , [frontEndController::class , 'live_search'])->name('live_search');
 
-    Route::get('add_to_cart/{id}' , [ frontEndController::class , 'add_to_cart'])->name('add_to_cart');
+    Route::post('add_to_cart/{id}' , [ frontEndController::class , 'add_to_cart'])->name('add_to_cart');
 
     Route::get('check_out/{id}' , [frontEndController::class , 'check_out'])->name('check_out');
 
